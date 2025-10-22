@@ -6,10 +6,10 @@ import { MenuIcon, SearchIcon, XIcon } from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [user, setUser] = useState(null);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showLoginForm, setShowLoginForm] = useState(false);
+  const [user, setUser] = useState(() => {
+    const storedUser = localStorage.getItem("user");
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
 
   return (
     <div className="fixed top-0 left-0 z-50 w-full flex items-center justify-between px-6 md::px-16 lg:px-36 py-5">
@@ -31,7 +31,7 @@ const Navbar = () => {
           onClick={() => {
             scrollTo(0, 0), setIsOpen(false);
           }}
-          to="/"
+          to="/home"
         >
           Home
         </Link>
@@ -42,7 +42,7 @@ const Navbar = () => {
           }}
           to="/movies"
         >
-          Movies
+          Events
         </Link>
 
         <Link
@@ -76,14 +76,24 @@ const Navbar = () => {
       <div className="flex items-center gap-8">
         <SearchIcon className=" max-md:hidden w-6 h-6 cursor-pointer" />
         {user ? (
-          <span className="font-medium">Hi, {user.first_name}</span>
+          <div className="flex items-center gap-4">
+            <span className="font-medium">Hi, {user.first_name}</span>
+            <button
+              onClick={() => {
+                localStorage.removeItem("user");
+                setUser(null);
+              }}
+              className="px-4 py-1 sm:px-7 sm:py-2 bg-blue-600 hover:bg-blue-700 text-white transition rounded-full font-medium cursor-pointer"
+            >
+              Logout
+            </button>
+          </div>
         ) : (
-          <button
-            onClick={() => setShowLoginForm(!showLoginForm)}
-            className="px-4 py-1 sm:px-7 sm:py-2 bg-primary hover:bg-primary-dull transition rounded-full font-medium cursor-pointer"
-          >
-            Login
-          </button>
+          <Link to="/login">
+            <button className="px-4 py-1 sm:px-7 sm:py-2 bg-blue-600 hover:bg-blue-700 text-white transition rounded-full font-medium cursor-pointer">
+              Login
+            </button>
+          </Link>
         )}
       </div>
 
@@ -91,50 +101,6 @@ const Navbar = () => {
         className="max-md:ml-4 md:hidden w-8 h-8 cursor-pointer"
         onClick={() => setIsOpen(!isOpen)}
       />
-
-      {showLoginForm && (
-        <div className="fixed top-20 right-6 bg-black shadow-lg rounded-lg p-4 w-72 z-999">
-          <form
-            onSubmit={async (e) => {
-              e.preventDefault();
-              try {
-                const response = await axios.post(
-                  "http://localhost:8000/api/login",
-                  {
-                    email,
-                    password,
-                  }
-                );
-                setUser(response.data.user);
-                setShowLoginForm(false);
-              } catch (error) {
-                alert("Login gagal");
-              }
-            }}
-          >
-            <input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full mb-2 p-2 border rounded"
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full mb-2 p-2 border rounded"
-            />
-            <button
-              type="submit"
-              className="w-full bg-primary text-white py-2 rounded hover:bg-primary-dull"
-            >
-              Submit
-            </button>
-          </form>
-        </div>
-      )}
     </div>
   );
 };
