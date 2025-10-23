@@ -9,6 +9,7 @@ class Customer extends Authenticatable //model Customer itu diambil dari model U
 {
     use Notifiable;
 
+    protected $table = 'customers';
     protected $primaryKey = 'user_id';
 
     protected $fillable = ['nik', 'email', 'password', 'first_name', 'last_name', 'birth_of_date', 'phone_number'];

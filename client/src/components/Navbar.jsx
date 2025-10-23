@@ -90,12 +90,17 @@ const Navbar = () => {
         {user ? (
           <div className="flex items-center gap-4">
             <span className="font-medium">Hi, {user.first_name}</span>
+            <Link to="/profile">
+              <button className="px-4 py-1 sm:px-7 sm:py-2 bg-blue-400 hover:bg-blue-500 text-white transition rounded-full font-medium cursor-pointer">
+                Profile
+              </button>
+            </Link>
             <button
               onClick={() => {
                 localStorage.removeItem("user");
                 setUser(null);
               }}
-              className="px-4 py-1 sm:px-7 sm:py-2 bg-blue-600 hover:bg-blue-700 text-white transition rounded-full font-medium cursor-pointer"
+              className="px-4 py-1 sm:px-7 sm:py-2 bg-red-600 hover:bg-red-700 text-white transition rounded-full font-medium cursor-pointer"
             >
               Logout
             </button>

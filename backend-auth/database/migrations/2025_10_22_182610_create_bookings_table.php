@@ -12,7 +12,7 @@ return new class extends Migration {
             $table->foreignId('user_id')->constrained('customers', 'user_id');
             $table->decimal('total_amount', 12, 2);
             $table->enum('status', ['pending', 'paid', 'canceled', 'refund']);
-            $table->enum('payment_method', ['Cash', 'Bank', 'QRIS', 'OVO', 'ShopeePay']);
+            $table->enum('payment_method', ['Cash', 'Bank', 'QRIS', 'OVO', 'ShopeePay'])->nullable();
             $table->timestamps();
         });
     }

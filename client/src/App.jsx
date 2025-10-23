@@ -7,7 +7,6 @@ import {
   useLocation,
 } from "react-router-dom";
 import Home from "./pages/Home";
-import MyBookings from "./pages/myBookings";
 import { Toaster } from "react-hot-toast";
 import Footer from "./components/Footer";
 import Login from "./pages/Login";
@@ -17,6 +16,7 @@ import EventList from "./pages/EventList";
 import BookingHistory from "./pages/BookingHistory";
 import Places from "./pages/Places";
 import ContactUs from "./pages/ContactUs";
+import Profile from "./pages/Profile";
 
 const App = () => {
   const location = useLocation();
@@ -31,7 +31,6 @@ const App = () => {
       {!hideLayout && <Navbar />}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/my-bookings" element={<MyBookings />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/events" element={<EventList />} />
@@ -39,6 +38,7 @@ const App = () => {
         <Route path="/history" element={<BookingHistory />} />
         <Route path="/places" element={<Places />} />
         <Route path="/contact-us" element={<ContactUs />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
       {!hideLayout && <Footer />}
     </>
