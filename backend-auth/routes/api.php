@@ -6,6 +6,13 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\VenueController;
+use App\Http\Controllers\FeedbackController;
+
+// routes/api.php
+Route::post('/feedback', [FeedbackController::class, 'store']);
+
+// --- Event Filter Route ---
+Route::get('/events/filter', [EventController::class, 'filter']);
 
 // --- Venue Routes ---
 Route::get('/venues-with-events', [VenueController::class, 'withEventCount']);
@@ -22,6 +29,7 @@ Route::get('/events', [EventController::class, 'index']);
 Route::get('/events/recommendations', [EventController::class, 'recommendations']);
 // GET /api/events/{event} 
 Route::get('/events/{event}', [EventController::class, 'show']);
+Route::get('/events/search', [EventController::class, 'search']);
 
 
 // --- Customer Routes ---

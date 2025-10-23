@@ -7,10 +7,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import Home from "./pages/Home";
-import LayoutSeat from "./pages/LayoutSeat";
-import MovieDetails from "./pages/movieDetails";
 import MyBookings from "./pages/myBookings";
-import Favorite from "./pages/Favorite";
 import { Toaster } from "react-hot-toast";
 import Footer from "./components/Footer";
 import Login from "./pages/Login";
@@ -19,7 +16,7 @@ import EventDetail from "./pages/EventDetail";
 import EventList from "./pages/EventList";
 import BookingHistory from "./pages/BookingHistory";
 import Places from "./pages/Places";
-import Movies from "./pages/Movies";
+import ContactUs from "./pages/ContactUs";
 
 const App = () => {
   const location = useLocation();
@@ -34,17 +31,14 @@ const App = () => {
       {!hideLayout && <Navbar />}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/movies" element={<Movies />} />
-        <Route path="/movies/:id" element={<MovieDetails />} />
-        <Route path="/movies/:id/:date" element={<LayoutSeat />} />
         <Route path="/my-bookings" element={<MyBookings />} />
-        <Route path="/favorite" element={<Favorite />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/events" element={<EventList />} />
         <Route path="/event/:id" element={<EventDetail />} />
         <Route path="/history" element={<BookingHistory />} />
         <Route path="/places" element={<Places />} />
+        <Route path="/contact-us" element={<ContactUs />} />
       </Routes>
       {!hideLayout && <Footer />}
     </>

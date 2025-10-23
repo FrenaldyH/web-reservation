@@ -54,4 +54,34 @@ class EventController extends Controller
             'data' => $event->load('venue', 'tickets.seat'),
         ]);
     }
+
+    public function filter(Request $request)
+    {
+        $events = Event::query()
+            ->filterPrice($request->min_price, $request->max_price)
+            ->filterTime($request->start_date, $request->end_date)
+            ->with('venue')
+            ->get();
+
+        return response()->json($events);
+    }
+
+    public function search(Request $request)
+    {
+        $keyword = $request->query('q');
+
+        $events = Event::with('venue')
+            ->where('organizer', 'like', "%{$keyword}%")
+            ->orWhere('genre', 'like', "%{$keyword}%")
+            ->orWhereHas('venue', function ($q) use ($keyword) {
+                $q->where('city', 'like', "%{$keyword}%")
+                ->orWhere('venue_name', 'like', "%{$keyword}%");
+            })
+            ->get();
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $events,
+        ]);
+    }
 }

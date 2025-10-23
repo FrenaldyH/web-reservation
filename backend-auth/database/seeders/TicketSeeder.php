@@ -9,7 +9,7 @@ class TicketSeeder extends Seeder
 {
     public function run(): void
     {
-        // Event 1 → kursi venue 1 (seat_id 1-10)
+        // Event 1 => kursi venue 1 (seat_id 1-10)
         for ($i = 1; $i <= 10; $i++) {
             DB::table('tickets')->insert([
                 'event_id' => 1,
@@ -21,7 +21,7 @@ class TicketSeeder extends Seeder
             ]);
         }
 
-        // Event 2 → kursi venue 2 (seat_id 11-20)
+        // Event 2 => kursi venue 2 (seat_id 11-20)
         for ($i = 11; $i <= 20; $i++) {
             DB::table('tickets')->insert([
                 'event_id' => 2,

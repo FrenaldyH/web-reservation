@@ -11,7 +11,7 @@ class Booking extends Model
 
     protected $primaryKey = 'booking_id';
 
-    protected $fillable = ['user_id', 'total_amount', 'status', 'payment_method'];
+    protected $fillable = ['user_id', 'total_amount', 'status'];
 
     // Satu booking dimiliki oleh satu customer
     public function customer()

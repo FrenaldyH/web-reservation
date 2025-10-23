@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { assets } from "../assets/assets";
 import { MenuIcon, SearchIcon, XIcon } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,6 +11,14 @@ const Navbar = () => {
     const storedUser = localStorage.getItem("user");
     return storedUser ? JSON.parse(storedUser) : null;
   });
+  const navigate = useNavigate();
+
+  const handleSearch = () => {
+    const q = window.prompt("Cari event (genre, kota, organizer, venue):");
+    if (q && q.trim()) {
+      navigate(`/events?q=${encodeURIComponent(q.trim())}`);
+    }
+  };
 
   return (
     <div className="fixed top-0 left-0 z-50 w-full flex items-center justify-between px-6 md::px-16 lg:px-36 py-5">
@@ -57,15 +66,6 @@ const Navbar = () => {
           onClick={() => {
             scrollTo(0, 0), setIsOpen(false);
           }}
-          to="/"
-        >
-          Theaters
-        </Link>
-
-        <Link
-          onClick={() => {
-            scrollTo(0, 0), setIsOpen(false);
-          }}
           to="/history"
         >
           Booking History
@@ -75,14 +75,18 @@ const Navbar = () => {
           onClick={() => {
             scrollTo(0, 0), setIsOpen(false);
           }}
-          to="/favorite"
+          to="/contact-us"
         >
-          Favourites
+          Contact Us
         </Link>
       </div>
 
       <div className="flex items-center gap-8">
-        <SearchIcon className=" max-md:hidden w-6 h-6 cursor-pointer" />
+        <SearchIcon
+          className="max-md:hidden w-6 h-6 cursor-pointer"
+          onClick={handleSearch}
+          title="Cari event"
+        />
         {user ? (
           <div className="flex items-center gap-4">
             <span className="font-medium">Hi, {user.first_name}</span>

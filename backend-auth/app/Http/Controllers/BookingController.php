@@ -17,7 +17,6 @@ class BookingController extends Controller
             'user_id' => 'required|exists:customers,user_id',
             'ticket_ids' => 'required|array',
             'ticket_ids.*' => 'exists:tickets,ticket_id',
-            'payment_method' => 'required|in:Cash,Bank,QRIS,OVO,ShopeePay',
         ]);
 
         // Ambil event_id dari salah satu tiket (anggap semua tiket dari event yang sama)
@@ -61,7 +60,6 @@ class BookingController extends Controller
                 'user_id' => $request->input('user_id'),
                 'total_amount' => $totalAmount,
                 'status' => 'pending', // awalnya pending
-                'payment_method' => $request->input('payment_method'),
             ]);
 
             foreach ($tickets as $ticket) {
