@@ -5,7 +5,10 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\VenueController;
 
+// --- Venue Routes ---
+Route::get('/venues-with-events', [VenueController::class, 'withEventCount']);
 
 // --- Authentication Routes ---
 Route::post('/login', [AuthController::class, 'login']);

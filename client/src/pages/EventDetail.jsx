@@ -36,8 +36,8 @@ const EventDetail = () => {
       })
       .then((res) => setEvent(res.data.data || res.data))
       .catch((err) => {
-        console.error("Gagal pesan tiket:", err.response?.data || err);
-        alert("Pesan tiket gagal");
+        console.error("Error detail:", err.response?.data || err);
+        alert(err.response?.data?.message || "Pesan tiket gagal");
       });
   };
 

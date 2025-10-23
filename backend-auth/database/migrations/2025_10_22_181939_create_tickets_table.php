@@ -11,8 +11,8 @@ return new class extends Migration {
             $table->id('ticket_id'); // custom primary key
             $table->foreignId('event_id')->constrained('events', 'event_id');
             $table->foreignId('seat_id')->constrained('seats', 'seat_id');
-            $table->enum('status', ['available', 'sold']);
-            $table->dateTime('expires_at');
+            $table->enum('status', ['available', 'reserved', 'sold']); 
+            $table->dateTime('expires_at')->nullable(); 
             $table->timestamps();
         });
     }

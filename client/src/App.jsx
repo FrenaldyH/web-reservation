@@ -7,7 +7,6 @@ import {
   useLocation,
 } from "react-router-dom";
 import Home from "./pages/Home";
-import Movies from "./pages/movies";
 import LayoutSeat from "./pages/LayoutSeat";
 import MovieDetails from "./pages/movieDetails";
 import MyBookings from "./pages/myBookings";
@@ -18,6 +17,9 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import EventDetail from "./pages/EventDetail";
 import EventList from "./pages/EventList";
+import BookingHistory from "./pages/BookingHistory";
+import Places from "./pages/Places";
+import Movies from "./pages/Movies";
 
 const App = () => {
   const location = useLocation();
@@ -41,6 +43,8 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/events" element={<EventList />} />
         <Route path="/event/:id" element={<EventDetail />} />
+        <Route path="/history" element={<BookingHistory />} />
+        <Route path="/places" element={<Places />} />
       </Routes>
       {!hideLayout && <Footer />}
     </>

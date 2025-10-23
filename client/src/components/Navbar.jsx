@@ -13,10 +13,18 @@ const Navbar = () => {
 
   return (
     <div className="fixed top-0 left-0 z-50 w-full flex items-center justify-between px-6 md::px-16 lg:px-36 py-5">
-      <Link to="/" className="max-md:flex-1">
-        <img src={assets.logo} alt="" className="w-36 h-auto" />
-      </Link>
-
+      <div>
+        <Link to="/" className="flex items-center gap-2">
+          <img
+            src={assets.logo}
+            alt="Logo"
+            className="max-h-10 w-auto object-contain rounded-full"
+          />
+          <span className="text-xl font-semibold text-white-800">
+            FrenStevDims
+          </span>
+        </Link>
+      </div>
       <div
         className={`max-md:absolute max-md:top-0 max-md:left-0 max-md:font-medium max-md:text-lg z-50 flex flex-col md:flex-row items-center max-md:justify-center gap-8 md:px-8 py-3 max-md:h-screen md:rounded-full backdrop-blur bg-black/70 md:bg-white/10 md:border border-gray-300/20 overflow-hidden transition-[width] duration-300 ${
           isOpen ? "max-md:w-full" : "max-md:w-0"
@@ -31,16 +39,16 @@ const Navbar = () => {
           onClick={() => {
             scrollTo(0, 0), setIsOpen(false);
           }}
-          to="/home"
+          to="/places"
         >
-          Home
+          Places
         </Link>
 
         <Link
           onClick={() => {
             scrollTo(0, 0), setIsOpen(false);
           }}
-          to="/movies"
+          to="/events"
         >
           Events
         </Link>
@@ -58,9 +66,9 @@ const Navbar = () => {
           onClick={() => {
             scrollTo(0, 0), setIsOpen(false);
           }}
-          to="/"
+          to="/history"
         >
-          Releases
+          Booking History
         </Link>
 
         <Link

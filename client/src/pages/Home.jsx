@@ -9,8 +9,6 @@ const Home = () => {
     axios
       .get("http://localhost:8000/api/events/recommendations")
       .then((res) => {
-        // kalau response kamu langsung array, pakai res.data
-        // kalau pakai {status, data}, ganti jadi res.data.data
         setRecommended(res.data.data || res.data);
       })
       .catch((err) => console.error("Gagal ambil rekomendasi:", err));
